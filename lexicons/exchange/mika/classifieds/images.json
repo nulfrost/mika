@@ -1,0 +1,37 @@
+{
+  "lexicon": 1,
+  "id": "exchange.mika.classifieds.images",
+  "description": "A set of images belonging to a listing.",
+  "defs": {
+    "main": {
+      "type": "object",
+      "required": ["images"],
+      "properties": {
+        "images": {
+          "type": "array",
+          "items": { "type": "ref", "ref": "#image" },
+          "maxLength": 6
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "required": ["image", "alt"],
+      "properties": {
+        "image": {
+          "type": "blob",
+          "accept": ["image/*"],
+          "maxSize": 1000000
+        },
+        "alt": {
+          "type": "string",
+          "description": "Alt text description of the image, for accessibility."
+        },
+        "aspectRatio": {
+          "type": "ref",
+          "ref": "exchange.mika.classifieds.defs#aspectRatio"
+        }
+      }
+    }
+  }
+}

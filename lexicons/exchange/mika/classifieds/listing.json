@@ -1,0 +1,25 @@
+{
+  "lexicon": 1,
+  "id": "exchange.mika.classifieds.listing",
+  "description": "An object representing a listing of items or an item a user has posted.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": ["title", "createdAt"]
+      },
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title for the listing."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "datetime"
+        }
+      }
+    }
+  }
+}
