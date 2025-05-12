@@ -4,7 +4,7 @@ import type {
   NodeSavedState,
   NodeSavedStateStore,
 } from "@atproto/oauth-client-node";
-import type { PrismaClient } from "../../generated/prisma";
+import type { PrismaClient } from "@prisma-app/client";
 
 export class StateStore implements NodeSavedStateStore {
   constructor(private db: PrismaClient) {}

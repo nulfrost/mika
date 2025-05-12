@@ -4,7 +4,7 @@ import { prisma } from "#/db";
 
 const IS_DEV = process.env.NODE_ENV === "development";
 const PUBLIC_URL = "https://mika.exchange";
-const LOCAL_URL = "http://[::1]:3000";
+const LOCAL_URL = "http://[::1]:5173";
 const URL = IS_DEV ? LOCAL_URL : PUBLIC_URL;
 
 export const client = new NodeOAuthClient({
