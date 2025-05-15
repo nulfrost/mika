@@ -34,11 +34,11 @@ model Listing {
 }
 
 model Category {
-  id          Int     @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   name        String
   description String?
-  listing     Listing @relation(fields: [listingId], references: [id])
-  listingId   String  @unique
+  listing     Listing? @relation(fields: [listingId], references: [id])
+  listingId   String?  @unique
 }
 
 model Image {
