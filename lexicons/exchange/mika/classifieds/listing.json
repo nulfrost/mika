@@ -15,6 +15,10 @@
           "type": "string",
           "description": "The title for the listing."
         },
+        "media": {
+          "type": "union",
+          "refs": ["exchange.mika.classifieds.images"]
+        },
         "createdAt": {
           "type": "string",
           "format": "datetime"
