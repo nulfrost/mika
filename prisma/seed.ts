@@ -3,7 +3,17 @@ import { PrismaClient } from "@prisma-app/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.$executeRaw`TRUNCATE users, listings, categories, images, cities, areas, areas_on_users CASCADE;`;
+  await prisma.$transaction([
+    prisma.state.deleteMany(),
+    prisma.session.deleteMany(),
+    prisma.areasOnUser.deleteMany(),
+    prisma.area.deleteMany(),
+    prisma.city.deleteMany(),
+    prisma.image.deleteMany(),
+    prisma.category.deleteMany(),
+    prisma.listing.deleteMany(),
+    prisma.user.deleteMany(),
+  ]);
   const categories = await prisma.category.createManyAndReturn({
     data: [
       {

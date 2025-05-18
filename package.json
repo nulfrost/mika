@@ -5,7 +5,10 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "generate": "prisma generate",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate",
+    "db:seed": "prisma db push --force-reset && prisma db seed",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc"
   },
