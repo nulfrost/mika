@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma-app/client";
 const prisma = new PrismaClient();
 
 async function main() {
+  await prisma.$executeRaw`TRUNCATE users, listings, categories, images, cities, areas, areas_on_users CASCADE;`;
   const categories = await prisma.category.createManyAndReturn({
     data: [
       {
@@ -47,13 +48,61 @@ async function main() {
     ],
   });
 
-  // const preferredAreas = await prisma.preferredArea.createManyAndReturn({
-  //   data: [{
-  //     name: ""
-  //   }]
-  // })
+  const cities = await prisma.city.createManyAndReturn({
+    data: [
+      {
+        name: "Toronto",
+        province: "Ontario",
+      },
+    ],
+  });
 
-  console.log({ categories });
+  /**
+  * - Toronto
+      - City of Toronto
+        - Downtown core
+        - East Toronto
+        - North Toronto
+        - West Toronto
+      - North York
+      - Scarborough
+  */
+  const areas = await prisma.area.createManyAndReturn({
+    data: [
+      {
+        name: "City of Toronto",
+        city_id: 1,
+        slug: "city-of-toronto",
+      },
+      {
+        name: "Etobicoke",
+        city_id: 1,
+        slug: "etobicoke",
+      },
+      {
+        name: "North York",
+        city_id: 1,
+        slug: "north-york",
+      },
+      {
+        name: "Scarborough",
+        city_id: 1,
+        slug: "scarborough",
+      },
+      {
+        name: "East York",
+        city_id: 1,
+        slug: "east-york",
+      },
+      {
+        name: "York",
+        city_id: 1,
+        slug: "york",
+      },
+    ],
+  });
+
+  console.log({ categories, areas, cities });
 }
 
 main()
