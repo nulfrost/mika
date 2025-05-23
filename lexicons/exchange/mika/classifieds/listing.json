@@ -14,13 +14,35 @@
             "type": "string",
             "description": "The title for the listing."
           },
+          "description": {
+            "type": "string",
+            "description": "The description for the listing."
+          },
+          "status": {
+            "type": "string",
+            "description": "The current status for the listing.",
+            "knownValues": [
+              "exchange.mika.classifieds.defs#active",
+              "exchange.mika.classifieds.defs#claimed"
+            ]
+          },
           "media": {
             "type": "union",
             "refs": ["exchange.mika.classifieds.images"]
           },
+          "isFree": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether the items in the listing are free or not."
+          },
           "createdAt": {
             "type": "string",
             "format": "datetime"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "When the listing expires, if it's time sensitive."
           }
         }
       }

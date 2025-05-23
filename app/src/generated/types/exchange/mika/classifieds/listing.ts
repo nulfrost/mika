@@ -19,8 +19,19 @@ export interface Record {
   $type: 'exchange.mika.classifieds.listing'
   /** The title for the listing. */
   title: string
+  /** The description for the listing. */
+  description?: string
+  /** The current status for the listing. */
+  status?:
+    | 'exchange.mika.classifieds.defs#active'
+    | 'exchange.mika.classifieds.defs#claimed'
+    | (string & {})
   media?: $Typed<ExchangeMikaClassifiedsImages.Main> | { $type: string }
+  /** Whether the items in the listing are free or not. */
+  isFree: boolean
   createdAt: string
+  /** When the listing expires, if it's time sensitive. */
+  expiresAt?: string
   [k: string]: unknown
 }
 

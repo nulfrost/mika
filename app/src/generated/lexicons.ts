@@ -30,6 +30,72 @@ export const schemaDict = {
           },
         },
       },
+      active: {
+        type: 'token',
+        description: 'State representing a listing that is active',
+      },
+      claimed: {
+        type: 'token',
+        description: 'State representing a listing that has been claimed',
+      },
+      listingView: {
+        type: 'object',
+        required: ['uri', 'profile', 'title', 'createdAt'],
+        properties: {
+          uri: {
+            type: 'string',
+            format: 'at-uri',
+          },
+          title: {
+            type: 'string',
+            description: 'The title for the listing.',
+          },
+          description: {
+            type: 'string',
+            description: 'The description for the listing.',
+          },
+          status: {
+            type: 'string',
+            description: 'The current status for the listing.',
+            knownValues: [
+              'exchange.mika.classifieds.defs#active',
+              'exchange.mika.classifieds.defs#claimed',
+            ],
+          },
+          media: {
+            type: 'union',
+            refs: ['lex:exchange.mika.classifieds.images'],
+          },
+          isFree: {
+            type: 'boolean',
+            default: false,
+            description: 'Whether the items in the listing are free or not.',
+          },
+          createdAt: {
+            type: 'string',
+            format: 'datetime',
+          },
+          expiresAt: {
+            type: 'string',
+            format: 'datetime',
+            description: "When the listing expires, if it's time sensitive.",
+          },
+          profile: {
+            type: 'ref',
+            ref: 'lex:exchange.mika.classifieds.defs#profileView',
+          },
+        },
+      },
+      profileView: {
+        type: 'object',
+        required: ['did'],
+        properties: {
+          did: {
+            type: 'string',
+            format: 'did',
+          },
+        },
+      },
     },
   },
   ExchangeMikaClassifiedsImages: {
@@ -90,13 +156,35 @@ export const schemaDict = {
               type: 'string',
               description: 'The title for the listing.',
             },
+            description: {
+              type: 'string',
+              description: 'The description for the listing.',
+            },
+            status: {
+              type: 'string',
+              description: 'The current status for the listing.',
+              knownValues: [
+                'exchange.mika.classifieds.defs#active',
+                'exchange.mika.classifieds.defs#claimed',
+              ],
+            },
             media: {
               type: 'union',
               refs: ['lex:exchange.mika.classifieds.images'],
             },
+            isFree: {
+              type: 'boolean',
+              default: false,
+              description: 'Whether the items in the listing are free or not.',
+            },
             createdAt: {
               type: 'string',
               format: 'datetime',
+            },
+            expiresAt: {
+              type: 'string',
+              format: 'datetime',
+              description: "When the listing expires, if it's time sensitive.",
             },
           },
         },

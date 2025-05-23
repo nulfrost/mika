@@ -26,7 +26,7 @@ model Listing {
   title       String
   description String?
   status      ListingStatus @default(ACTIVE)
-  is_free     Boolean
+  is_free     Boolean       @default(false)
   created_at  DateTime      @default(now())
   updated_at  DateTime      @updatedAt
   expires_at  DateTime?
@@ -115,6 +115,4 @@ model State {
 enum ListingStatus {
   ACTIVE
   CLAIMED
-  UNAVAILABLE
-  DELETED
 }

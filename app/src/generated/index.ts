@@ -17,6 +17,11 @@ export * as ExchangeMikaClassifiedsDefs from './types/exchange/mika/classifieds/
 export * as ExchangeMikaClassifiedsImages from './types/exchange/mika/classifieds/images.js'
 export * as ExchangeMikaClassifiedsListing from './types/exchange/mika/classifieds/listing.js'
 
+export const EXCHANGE_MIKA_CLASSIFIEDS = {
+  DefsActive: 'exchange.mika.classifieds.defs#active',
+  DefsClaimed: 'exchange.mika.classifieds.defs#claimed',
+}
+
 export class AtpBaseClient extends XrpcClient {
   exchange: ExchangeNS
 
